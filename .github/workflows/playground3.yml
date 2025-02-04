@@ -21,7 +21,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
       - id: random
         run: |
-          echo "value=$RANDOM" | tee .random | tee -a $GITHUB_OUTPUTS
+          echo "value=$RANDOM" | tee .random | tee -a $GITHUB_OUTPUT
       - run: |
           git add .random
           git commit -m "chore: update random value"
