@@ -23,5 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git log --oneline | head
+      - run: git show
+      - run: git log -1 --pretty=%B
+      - run: git branch --show-current
+      - run: echo "${{ github.head_ref }}"
+      - run: echo "${{ github.event.merge_group.head_ref }}"
       
