@@ -1,10 +1,11 @@
 name: Playground
 
 on:
+  merge_group:
   workflow_dispatch:
   pull_request:
   push:
-    paths: ['.github/workflows/playground.yml']
+    paths: ['.github/workflows/playground.yml', '**/*.yml']
   release:
     types:
       - published
@@ -13,19 +14,14 @@ on:
 permissions:
   checks: write
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  playground:
+  playground:  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          ref: "refs/pull/61/merge"
-      - run: git checkout $GITHUB_SHA --no-overlay -- .github
-        shell: bash
-      - run: ls .github/**/*
-        shell: bash
-      - run: cat .github/workflows/playground.yml
-        shell: bash
-      - run: git status
-        shell: bash
+      - run: git log --oneline | head
+      
