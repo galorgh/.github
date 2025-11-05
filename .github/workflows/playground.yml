@@ -20,5 +20,8 @@ defaults:
 
 jobs:
   playground:  
-    uses: galargh/.github/.github/workflows/playground.yml@master
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.event_name == 'merge_group' }}
+        run: sleep 60
       
