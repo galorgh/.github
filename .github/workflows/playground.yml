@@ -22,6 +22,8 @@ jobs:
   playground:  
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.event_name == 'merge_group' }}
-        run: sleep 30
+      - uses: actions/checkout@v6
+      - run: git rev-parse HEAD~1
+        continue-on-error: true
+      - run: git fetch --deepen=1
       
